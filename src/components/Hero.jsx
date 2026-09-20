@@ -20,7 +20,7 @@ export default function Hero() {
             {/* Eyebrow badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-terracotta-50 border border-terracotta-200 text-terracotta-800 text-xs font-bold uppercase tracking-wider mb-6 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-terracotta-500 animate-pulse" />
-              <span>WEB DEVELOPER • MCA STUDENT • BUILDER</span>
+              <span>ASPIRING WEB DEVELOPER • MCA STUDENT • BUILDER</span>
             </div>
 
             {/* Headline */}
@@ -34,7 +34,7 @@ export default function Hero() {
 
             {/* Supporting Text */}
             <p className="text-base sm:text-lg text-charcoal-700 leading-relaxed max-w-xl mb-8 font-normal">
-              I'm a web developer and MCA student who enjoys building responsive,
+              I'm an aspiring web developer and MCA student who enjoys building responsive,
               user-friendly web applications and turning ideas into real projects.
             </p>
 

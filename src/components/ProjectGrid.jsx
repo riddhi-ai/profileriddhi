@@ -1,30 +1,39 @@
 import { useState, useMemo } from 'react';
-import { Sparkles, FolderGit2, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects, projectCategories } from '../data/projects';
 import ProjectCard from './ProjectCard';
+import KajalDentalProject from './KajalDentalProject';
 
 export default function ProjectGrid({ onSelectProject }) {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === 'all') return projects;
-    return projects.filter((p) => p.filterCategory === activeCategory);
+
+    return projects.filter(
+      (p) => p.filterCategory === activeCategory
+    );
   }, [activeCategory]);
 
   return (
     <section id="projects" className="py-20 bg-cream-50 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-lavender-600">03 / WORK</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-lavender-600">
+                03 / WORK
+              </span>
+
               <span className="w-8 h-[1px] bg-lavender-300" />
             </div>
+
             <h2 className="text-3xl sm:text-4xl font-extrabold text-charcoal-950 tracking-tight mb-3">
               Projects
             </h2>
+
             <p className="text-charcoal-600 text-sm sm:text-base max-w-xl">
               A few ideas that made it out of my head and into the browser.
             </p>
@@ -34,6 +43,7 @@ export default function ProjectGrid({ onSelectProject }) {
           <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-white border border-cream-300 shadow-sm self-start md:self-auto">
             {projectCategories.map((cat) => {
               const isSelected = activeCategory === cat.id;
+
               return (
                 <button
                   key={cat.id}
@@ -49,9 +59,14 @@ export default function ProjectGrid({ onSelectProject }) {
                     <motion.span
                       layoutId="activeFilter"
                       className="absolute inset-0 bg-lavender-100 border border-lavender-200/80 rounded-xl -z-10"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 400,
+                        damping: 30,
+                      }}
                     />
                   )}
+
                   {cat.label}
                 </button>
               );
@@ -61,16 +76,34 @@ export default function ProjectGrid({ onSelectProject }) {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+
           <AnimatePresence mode="popLayout">
+
+            {/* Existing Projects */}
             {filteredProjects.map((project) => (
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.3 }}
-                className={project.featured && activeCategory === 'all' ? 'md:col-span-2' : ''}
+                initial={{
+                  opacity: 0,
+                  scale: 0.96,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.96,
+                }}
+                transition={{
+                  duration: 0.3,
+                }}
+                className={
+                  project.featured && activeCategory === 'all'
+                    ? 'md:col-span-2'
+                    : ''
+                }
               >
                 <ProjectCard
                   project={project}
@@ -79,31 +112,30 @@ export default function ProjectGrid({ onSelectProject }) {
               </motion.div>
             ))}
 
-            {/* "More projects coming soon" subtle placeholder card */}
+            {/* Dr. Kajal Dental Clinic */}
             <motion.div
               layout
-              className="rounded-3xl bg-white/60 border-2 border-dashed border-cream-400 p-8 flex flex-col items-center justify-center text-center hover:border-lavender-400 hover:bg-white transition-all duration-300 group min-h-[280px]"
+              initial={{
+                opacity: 0,
+                scale: 0.96,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.96,
+              }}
+              transition={{
+                duration: 0.3,
+              }}
             >
-              {/* Cute 3D folder icon */}
-              <div className="w-16 h-16 rounded-2xl bg-lavender-50 border border-lavender-200 flex items-center justify-center text-lavender-600 mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-sm relative">
-                <FolderGit2 className="w-8 h-8" />
-                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-peach-400 flex items-center justify-center text-[9px] text-white font-bold">
-                  +
-                </span>
-              </div>
-
-              <span className="px-2.5 py-0.5 rounded-full bg-cream-200 text-charcoal-700 text-[10px] font-mono font-bold mb-2">
-                status: building…
-              </span>
-
-              <h3 className="text-lg font-extrabold text-charcoal-900 mb-1">
-                More projects coming soon ✨
-              </h3>
-              <p className="text-xs text-charcoal-600 max-w-xs leading-relaxed">
-                Currently tinkering with new web applications, experiments, and hackathon prototypes.
-              </p>
+              <KajalDentalProject />
             </motion.div>
+
           </AnimatePresence>
+
         </div>
       </div>
     </section>
