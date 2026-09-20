@@ -15,6 +15,7 @@ export const projects = [
     category: "AI • Health • Product",
     filterCategory: "AI",
     description: "An AI-powered health guidance platform designed to help users better understand, organize, and correlate their personal health data into clear, doctor-ready insights.",
+    background: "/images/qure-d-background.png",
     thumbnail: "/images/qure-d-mobile.jpg",
     qrCode: "/images/qure-d-qr.png",
     gallery: [
